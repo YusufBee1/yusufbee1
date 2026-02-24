@@ -106,6 +106,7 @@
       object-fit: cover;
       background: #eee;
       border-bottom: 1px solid var(--border);
+      object-position: top; /* Ensures screenshots don't cut off weirdly */
     }
 
     .card-content {
@@ -133,7 +134,7 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
-      margin-top: auto; /* Pushes tech stack to bottom of content area */
+      margin-top: auto;
     }
 
     .badge {
@@ -211,8 +212,6 @@
         <a href="mailto:yusuf@outlook.com">Email</a>
         <a href="https://www.linkedin.com/in/yusufbee" target="_blank">LinkedIn</a>
         <a href="https://github.com/YusufBee1" target="_blank">GitHub</a>
-        <a href="https://x.com/yusufblanton" target="_blank">Twitter / X</a>
-        <a href="https://medium.com/@yusuf.blanton" target="_blank">Medium</a>
       </div>
     </div>
   </section>
@@ -221,7 +220,7 @@
     <div class="projects-grid">
 
       <article class="card">
-        <img src="https://via.placeholder.com/600x400.png?text=Django+Recipe+App" alt="Recipe App Screenshot" class="card-image">
+        <img src="./Portfolio%20-%20Recipe.png" alt="Django Recipe App Interface" class="card-image">
         <div class="card-content">
           <h2>Recipe App (Django)</h2>
           <p>
@@ -242,7 +241,7 @@
       </article>
       
       <article class="card">
-        <img src="https://via.placeholder.com/600x400.png?text=Meet+App+V2" alt="Meet App Screenshot" class="card-image">
+        <img src="./Portfolio%20-%20Meet.png" alt="React Meet App Interface" class="card-image">
         <div class="card-content">
           <h2>Meet App</h2>
           <p>
@@ -255,14 +254,13 @@
             <span class="badge">Jest/Cucumber</span>
           </div>
           <div class="card-actions">
-            <a href="https://meet-app-pink-theta.vercel.app/" target="_blank" class="btn btn-primary">View Live App</a>
             <a href="https://github.com/YusufBee1/meet-app" target="_blank" class="btn btn-outline">View Code</a>
           </div>
         </div>
       </article>
 
       <article class="card">
-        <img src="https://via.placeholder.com/600x400.png?text=Chat+Mobile+App" alt="Chat App Screenshot" class="card-image">
+        <img src="./Portfolio%20-%20Chat%20App.png" alt="React Native Chat App Interface" class="card-image">
         <div class="card-content">
           <h2>Chat App (Mobile)</h2>
           <p>
@@ -281,7 +279,7 @@
       </article>
 
       <article class="card">
-        <img src="https://via.placeholder.com/600x400.png?text=Angular+SPA" alt="Angular App Screenshot" class="card-image">
+        <img src="./Portfolio%20-%20Angular.png" alt="Angular SPA Interface" class="card-image">
         <div class="card-content">
           <h2>myFlix (Angular)</h2>
           <p>
