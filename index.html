@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,12 +13,15 @@
     :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
+      --secondary: #0f172a;
       --bg-body: #f8fafc;
       --bg-card: #ffffff;
       --text-main: #1e293b;
       --text-muted: #64748b;
       --border: #e2e8f0;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --featured-height: 400px;
     }
 
     /* RESET & BASE */
@@ -33,7 +36,7 @@
 
     /* LAYOUT */
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
@@ -42,17 +45,18 @@
     .hero {
       background: #ffffff;
       border-bottom: 1px solid var(--border);
-      padding: 4rem 0;
+      padding: 5rem 0;
       text-align: center;
     }
     .hero h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin: 0 0 0.5rem 0;
-      letter-spacing: -0.05rem;
-      color: #0f172a;
+      letter-spacing: -0.07rem;
+      color: var(--secondary);
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
     }
     .hero p.tagline {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       color: var(--text-muted);
       margin-bottom: 2rem;
     }
@@ -66,10 +70,10 @@
       color: var(--text-main);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.95rem;
-      padding-bottom: 2px;
+      font-size: 1rem;
+      padding-bottom: 3px;
       border-bottom: 2px solid transparent;
-      transition: all 0.2s;
+      transition: all 0.2s ease-in-out;
     }
     .social-links a:hover {
       color: var(--primary);
@@ -79,49 +83,54 @@
     /* PROJECTS GRID */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 4rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      padding: 5rem 0;
     }
 
-    /* FEATURED CARD (REVISED FOR VERTICAL IMAGES) */
+    /* FEATURED CARD (THEWOW UI PIVOT) */
     .featured-card {
       grid-column: 1 / -1;
       display: flex;
       flex-direction: row;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
     }
     .featured-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+      box-shadow: var(--hover-shadow);
+      border-color: #dbeafe;
     }
     
-    /* REVISED CONTAINER FOR VERTICAL/NARROW IMAGES */
+    /* COLLAGE CONTAINER FOR VERTICAL/NARROW IMAGES */
     .featured-image-container {
-      width: 45%; /* Content gets more room */
+      width: 48%; /* Content gets slightly more room */
       background: #f1f5f9;
       display: flex;
-      flex-direction: row; /* Sideways stack */
+      flex-direction: row; /* Stack sideways like vertical columns */
       overflow: hidden; /* Important! Cut off the bottoms gracefully */
       border-right: 1px solid var(--border);
     }
     
     .vertical-asset {
       width: 50%;
-      height: 400px; /* Fixed height forces the crop */
+      height: var(--featured-height); /* Fixed height forces the crop */
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center top; /* Focus on the hero/header section */
+      background-position: center top; /* Focus on the hero/header section you built */
+      transition: background-position 0.2s ease-out;
+    }
+    .vertical-asset:hover {
+        background-position: center bottom; /* subtle scroll on hover for "WOW" UI */
     }
 
     .featured-content {
-      width: 55%;
-      padding: 2rem;
+      width: 52%;
+      padding: 3rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -131,21 +140,22 @@
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
       display: flex;
       flex-direction: column;
     }
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+      box-shadow: var(--hover-shadow);
+      border-color: #dbeafe;
     }
 
     .card-image {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
       background: #eee;
       border-bottom: 1px solid var(--border);
@@ -153,7 +163,7 @@
     }
 
     .card-content {
-      padding: 1.5rem;
+      padding: 2rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
@@ -161,30 +171,30 @@
 
     .card h2, .featured-content h2 {
       margin-top: 0;
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
-      color: #0f172a;
+      margin-bottom: 0.6rem;
+      font-size: 1.75rem;
+      color: var(--secondary);
     }
 
     .card p, .featured-content p {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      margin-bottom: 1.75rem;
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
     }
 
     .badge {
       background: #eff6ff;
       color: var(--primary);
-      padding: 0.25rem 0.75rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 600;
       border: 1px solid #dbeafe;
     }
@@ -195,24 +205,26 @@
       margin-top: auto;
     }
 
-    /* BUTTONS */
+    /* BUTTONS & WOW UI INTERACTION */
     .btn {
       display: inline-block;
       text-decoration: none;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
       font-weight: 600;
       text-align: center;
-      transition: background 0.2s;
+      transition: all 0.2s ease-in-out;
       flex: 1;
     }
     .btn-primary {
       background: var(--primary);
       color: white;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     .btn-primary:hover {
       background: var(--primary-hover);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
     .btn-outline {
       background: white;
@@ -221,30 +233,38 @@
     }
     .btn-outline:hover {
       background: #f1f5f9;
+      border-color: #cbd5e1;
     }
 
     /* ABOUT SECTION */
     .about-section {
-      background: #fff;
+      background: #ffffff;
       border-top: 1px solid var(--border);
-      padding: 4rem 0;
+      padding: 5rem 0;
       text-align: center;
     }
     .about-content {
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
     }
+    .about-section h2 { font-size: 2.25rem; color: var(--secondary); margin-bottom: 1rem; }
+    .about-section p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* FOOTER */
+    footer { padding: 3rem 0; text-align: center; color: var(--text-muted); border-top: 1px solid var(--border); font-size: 0.9rem; }
 
     /* RESPONSIVE */
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 2.75rem; }
       .featured-card { flex-direction: column; }
       .featured-image-container, .featured-content { width: 100%; }
       .featured-image-container { border-right: none; border-bottom: 1px solid var(--border); }
-      .vertical-asset { height: 300px; }
+      .vertical-asset { height: 320px; }
+      .featured-content { padding: 2.5rem; }
     }
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.2rem; }
-      .projects-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 0; }
       .card-actions { flex-direction: column; }
     }
   </style>
@@ -269,20 +289,21 @@
 
       <article class="featured-card">
         <div class="featured-image-container">
-          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum.png'); border-right: 1px solid var(--border);"></div>
-          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum2.png');"></div>
+          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum.png'); border-right: 1px solid var(--border);" title="Desktop Overview Hero Shot"></div>
+          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum2.png');" title="Production Detailed Views"></div>
         </div>
         <div class="featured-content">
-          <div class="badge" style="width: fit-content; margin-bottom: 1rem;">Featured: Production Client Site</div>
+          <div class="badge" style="width: fit-content; margin-bottom: 1.25rem; background: #eff6ff; color: var(--primary);">Featured: Production Client Delivery</div>
           <h2>Platinum Environmental Group</h2>
           <p>
-            A high-performance corporate platform engineered for a leading industrial environmental firm. Developed to translate high-stakes field services into a professional digital presence, featuring semantic architecture, mobile-first design, and detailed commercial protocols. Demonstrates real-world client delivery and complex B2B narrative mapping.
+            A production-grade, responsive corporate platform engineered for a leading commercial environmental firm. Developed to translate complex industrial services (remediation, dredging, material logistics) into a polished B2B digital presence. Features semantic architecture, mobile-first design, and detailed health & safety protocols to drive commercial client conversion. Demonstrates real-world client delivery and complex narrative mapping.
           </p>
           <div class="tech-stack">
             <span class="badge">HTML5/CSS3</span>
             <span class="badge">JavaScript</span>
             <span class="badge">Responsive UI</span>
             <span class="badge">Commercial B2B</span>
+            <span class="badge">Client Delivery</span>
           </div>
           <div class="card-actions">
             <a href="https://platinumenvgroup.com/" target="_blank" class="btn btn-primary">View Live Site</a>
@@ -296,13 +317,14 @@
         <div class="card-content">
           <h2>Recipe App (Django)</h2>
           <p>
-            A full-stack web application for managing and analyzing recipes. Features secure authentication, PostgreSQL integration, and Pandas for visualizing trends.
+            A full-stack web application for managing and analyzing recipes. Built with Python & Django, it features secure authentication, PostgreSQL database integration, and data visualization using Pandas & Matplotlib to calculate recipe difficulty and trends.
           </p>
           <div class="tech-stack">
             <span class="badge">Python</span>
             <span class="badge">Django</span>
             <span class="badge">PostgreSQL</span>
             <span class="badge">Pandas</span>
+            <span class="badge">Heroku</span>
           </div>
           <div class="card-actions">
             <a href="https://yusuf-recipe-app-e9b7920225a4.herokuapp.com/" target="_blank" class="btn btn-primary">View Live App</a>
@@ -316,12 +338,13 @@
         <div class="card-content">
           <h2>Chat App (Mobile)</h2>
           <p>
-            Native mobile messaging interface built with React Native and Firestore. Features real-time messaging, image/geo-sharing, and robust offline data caching.
+            A native mobile chat interface built with React Native. Features include real-time messaging via Firestore, image sharing from camera/gallery, geolocation sharing, and robust offline data caching.
           </p>
           <div class="tech-stack">
             <span class="badge">React Native</span>
             <span class="badge">Expo</span>
             <span class="badge">Firestore</span>
+            <span class="badge">Android/iOS</span>
           </div>
           <div class="card-actions">
             <a href="https://github.com/YusufBee1/chat-app" target="_blank" class="btn btn-outline">View Code</a>
@@ -334,12 +357,13 @@
         <div class="card-content">
           <h2>myFlix (Angular)</h2>
           <p>
-            Single Page Application (SPA) built with Angular and Material UI, interfacing with a REST API movie database. Documented with TypeDoc.
+            A responsive Single Page Application (SPA) interfacing with a custom REST API movie database. It utilizes Angular Material for a polished UI, allowing users to manage profiles and favorite Goth-adjacent 90s movies. Fully documented with TypeDoc.
           </p>
           <div class="tech-stack">
             <span class="badge">Angular</span>
             <span class="badge">TypeScript</span>
             <span class="badge">REST API</span>
+            <span class="badge">TypeDoc</span>
           </div>
           <div class="card-actions">
             <a href="https://github.com/YusufBee1/myFlix-Angular-client" target="_blank" class="btn btn-outline">View Code</a>
@@ -354,10 +378,16 @@
     <div class="container about-content">
       <h2>About Me</h2>
       <p>
-        I’m Yusuf Bee, a driven full-stack developer with a focus on performance, precision, and purpose. I build responsive, testable, and scalable apps that bridge solid engineering with clean design. Always learning, always building.
+        I’m Yusuf Bee, a purpose-driven full-stack developer specializing in engineering performance, precision, and business logic into clean engineering. I bridge robust backend engineering with clean, responsive design to translate technical specifications into lived commercial solutions. Focused on performance and client delivery. Always learning, always building.
       </p>
     </div>
   </section>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 Yusuf Bee. Precision & Purpose • nag’s head, nc
+    </div>
+  </footer>
 
 </body>
 </html>
