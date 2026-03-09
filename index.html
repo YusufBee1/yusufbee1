@@ -86,7 +86,118 @@
       padding: 5rem 0;
     }
 
-    /* CARD BASE */
+    /* FEATURED CARD (THE WIDESCREEN "WOW" FIX) */
+    .featured-card {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+    .featured-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    /* INTERACTIVE BROWSER WINDOW */
+    .featured-browser-window {
+      width: 100%;
+      height: 480px; 
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      background: var(--secondary);
+      overflow: hidden;
+    }
+
+    /* macOS Style Browser Chrome */
+    .browser-chrome {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 8px;
+      z-index: 10;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #ff5f56; border: 1px solid #e0443e; }
+    .dot-yellow { background: #ffbd2e; border: 1px solid #dea123; }
+    .dot-green { background: #27c93f; border: 1px solid #1aab29; }
+
+    /* The Images inside the Window */
+    .crossfade-img {
+      position: absolute;
+      top: 36px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 36px);
+      background-size: cover;
+      background-position: center top;
+      transition: opacity 0.6s ease-in-out, transform 0.8s ease-out;
+    }
+
+    /* Top Image (Hero Shot) */
+    .img-primary {
+      background-image: url('./Portfolio%20-%20Platinum.png');
+      z-index: 2;
+      opacity: 1;
+    }
+
+    /* Bottom Image (Detail Shot) */
+    .img-secondary {
+      background-image: url('./Portfolio%20-%20Platinum2.png');
+      z-index: 1;
+      opacity: 1; 
+      transform: scale(1.03);
+    }
+
+    /* Hover Interactions */
+    .featured-card:hover .img-primary {
+      opacity: 0;
+    }
+    .featured-card:hover .img-secondary {
+      transform: scale(1);
+    }
+
+    /* FEATURED TEXT - TWO COLUMN GRID */
+    .featured-content {
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    
+    .featured-text-area h2 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 2rem;
+      color: var(--secondary);
+      letter-spacing: -0.03rem;
+    }
+    .featured-text-area p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 0;
+      line-height: 1.8;
+    }
+
+    .featured-action-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* STANDARD PROJECT CARD */
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -106,7 +217,7 @@
       width: 100%;
       height: 220px;
       object-fit: cover;
-      background: #0f172a;
+      background: #eee;
       border-bottom: 1px solid var(--border);
       object-position: top;
     }
@@ -136,6 +247,9 @@
       gap: 0.6rem;
       margin-bottom: 1.75rem;
     }
+    .featured-action-area .tech-stack {
+        margin-bottom: 0;
+    }
 
     .badge {
       background: #eff6ff;
@@ -151,6 +265,10 @@
       display: flex;
       gap: 1rem;
       margin-top: auto;
+    }
+    .featured-action-area .card-actions {
+        flex-direction: column;
+        gap: 0.75rem;
     }
 
     /* BUTTONS */
@@ -196,10 +314,17 @@
     .about-section p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.75; }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 2.75rem; }
+      .featured-content { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem; }
+      .featured-browser-window { height: 350px; }
+      .featured-action-area .card-actions { flex-direction: row; }
+    }
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.2rem; }
       .projects-grid { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 0; }
-      .card-actions { flex-direction: column; }
+      .card-actions, .featured-action-area .card-actions { flex-direction: column; }
+      .featured-browser-window { height: 250px; }
     }
   </style>
 </head>
@@ -208,7 +333,7 @@
   <section class="hero">
     <div class="container">
       <h1>Yusuf Bee</h1>
-      <p class="tagline">Full-Stack Developer | Python & Backend Specialist • FastAPI • Django • AWS</p>
+      <p class="tagline">Full-Stack Developer | Python & Backend Specialist • Django • AWS • React</p>
       
       <div class="social-links">
         <a href="mailto:Yusuf.Blanton@gmail.com">Email</a>
@@ -221,23 +346,57 @@
   <div class="container">
     <div class="projects-grid">
 
+      <article class="featured-card">
+        
+        <div class="featured-browser-window">
+          <div class="browser-chrome">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="crossfade-img img-secondary"></div>
+          <div class="crossfade-img img-primary"></div>
+        </div>
+
+        <div class="featured-content">
+          <div class="featured-text-area">
+            <div class="badge" style="width: fit-content; margin-bottom: 1.25rem; background: #eff6ff; color: var(--primary);">Featured: Production Client Delivery</div>
+            <h2>Platinum Environmental Group</h2>
+            <p>
+              A production-grade, responsive corporate platform engineered for a leading commercial environmental firm. Developed to translate complex industrial services (remediation, dredging, material logistics) into a polished B2B digital presence. Features semantic architecture, mobile-first design, and detailed health & safety protocols to drive commercial client conversion. Demonstrates real-world client delivery and complex narrative mapping.
+            </p>
+          </div>
+          <div class="featured-action-area">
+            <div class="tech-stack">
+              <span class="badge">HTML5/CSS3</span>
+              <span class="badge">JavaScript</span>
+              <span class="badge">Responsive UI</span>
+              <span class="badge">Commercial B2B</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://platinumenvgroup.com/" target="_blank" class="btn btn-primary">View Live Site</a>
+              <a href="https://github.com/YusufBee1/platinum-env-website" target="_blank" class="btn btn-outline">View Code</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
       <article class="card">
-        <img src="./Portfolio%20-%20MyInsurance.png" alt="MyInsurance Interface" class="card-image">
+        <img src="./Portfolio%20-%20MyInsurance.png" alt="MyInsurance App Interface" class="card-image">
         <div class="card-content">
-          <div class="badge" style="width: fit-content; margin-bottom: 1rem;">New: InsurTech MVP</div>
-          <h2>MyInsurance</h2>
+          <h2>MyInsurance (FastAPI)</h2>
           <p>
-            A privacy-first automation tool that extracts insurance renewal dates from PDFs in-memory and vaporizes files instantly. Engineered with a "Zero-Retention" policy to provide security-conscious utility while automating renewal alerts 20 days prior to expiration.
+            A high-speed, zero-retention InsurTech lead generation engine. Uploaded policies are parsed entirely in-memory using regex to extract renewal dates and immediately vaporized. Features frictionless Magic Link authentication and automated background scheduling via APScheduler to alert users 20 days prior to renewal.
           </p>
           <div class="tech-stack">
-            <span class="badge">FastAPI</span>
             <span class="badge">Python</span>
-            <span class="badge">PDFPlumber</span>
+            <span class="badge">FastAPI</span>
             <span class="badge">Resend API</span>
-            <span class="badge">Heroku</span>
+            <span class="badge">SQLite</span>
+            <span class="badge">Jinja2 / Tailwind</span>
           </div>
           <div class="card-actions">
-            <a href="https://myinsurance-1f99c913173e.herokuapp.com/" target="_blank" class="btn btn-primary">Live App</a>
+            <a href="https://myinsurance-1f99c913173e.herokuapp.com/" target="_blank" class="btn btn-primary">View Live App</a>
             <a href="https://github.com/YusufBee1/MyInsurance" target="_blank" class="btn btn-outline">Code</a>
           </div>
         </div>
@@ -248,36 +407,56 @@
         <div class="card-content">
           <h2>Recipe App (Django)</h2>
           <p>
-            A full-stack web application for managing and analyzing recipes. Built with Python & Django, it features secure authentication, PostgreSQL database integration, and data visualization using Pandas & Matplotlib.
+            A full-stack web application for managing and analyzing recipes. Built with Python & Django, it features secure authentication, PostgreSQL database integration, and data visualization using Pandas & Matplotlib to calculate recipe difficulty and trends.
           </p>
           <div class="tech-stack">
             <span class="badge">Python</span>
             <span class="badge">Django</span>
             <span class="badge">PostgreSQL</span>
             <span class="badge">Pandas</span>
+            <span class="badge">Heroku</span>
           </div>
           <div class="card-actions">
-            <a href="https://yusuf-recipe-app-e9b7920225a4.herokuapp.com/" target="_blank" class="btn btn-primary">Live App</a>
+            <a href="https://yusuf-recipe-app-e9b7920225a4.herokuapp.com/" target="_blank" class="btn btn-primary">View Live App</a>
             <a href="https://github.com/YusufBee1/recipe-app" target="_blank" class="btn btn-outline">Code</a>
           </div>
         </div>
       </article>
-
+      
       <article class="card">
         <img src="./Portfolio%20-%20Chat%20App.png" alt="React Native Chat App Interface" class="card-image">
         <div class="card-content">
           <h2>Chat App (Mobile)</h2>
           <p>
-            A native mobile chat interface built with React Native. Features include real-time messaging via Firestore, image sharing, geolocation sharing, and robust offline data caching.
+            A native mobile chat interface built with React Native. Features include real-time messaging via Firestore, image sharing from camera/gallery, geolocation sharing, and robust offline data caching.
           </p>
           <div class="tech-stack">
             <span class="badge">React Native</span>
             <span class="badge">Expo</span>
             <span class="badge">Firestore</span>
-            <span class="badge">Firebase Storage</span>
+            <span class="badge">Android/iOS</span>
           </div>
           <div class="card-actions">
-            <a href="https://github.com/YusufBee1/chat-app" target="_blank" class="btn btn-outline" style="flex: 1;">View Code</a>
+            <a href="https://github.com/YusufBee1/chat-app" target="_blank" class="btn btn-outline">View Code</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="./Portfolio%20-%20Angular.png" alt="Angular SPA Interface" class="card-image">
+        <div class="card-content">
+          <h2>myFlix (Angular)</h2>
+          <p>
+            A responsive Single Page Application (SPA) interfacing with a custom REST API movie database. It utilizes Angular Material for a polished UI, allowing users to manage profiles and favorite Goth-adjacent 90s movies. Fully documented with TypeDoc.
+          </p>
+          <div class="tech-stack">
+            <span class="badge">Angular</span>
+            <span class="badge">TypeScript</span>
+            <span class="badge">REST API</span>
+            <span class="badge">TypeDoc</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/YusufBee1/myFlix-Angular-client" target="_blank" class="btn btn-outline">View Code</a>
           </div>
         </div>
       </article>
@@ -289,7 +468,7 @@
     <div class="container about-content">
       <h2>About Me</h2>
       <p>
-        I’m Yusuf Bee, a purpose-driven full-stack developer specializing in engineering performance, precision, and business logic into clean engineering. I bridge robust backend engineering with clean, responsive design to translate technical specifications into lived commercial solutions.
+        I’m Yusuf Bee, a purpose-driven full-stack developer specializing in engineering performance, precision, and business logic into clean engineering. I bridge robust backend engineering with clean, responsive design to translate technical specifications into lived commercial solutions. Focused on performance and client delivery. Always learning, always building.
       </p>
     </div>
   </section>
