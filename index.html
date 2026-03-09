@@ -84,7 +84,7 @@
       padding: 4rem 0;
     }
 
-    /* FEATURED CARD (PLATINUM) */
+    /* FEATURED CARD (REVISED FOR VERTICAL IMAGES) */
     .featured-card {
       grid-column: 1 / -1;
       display: flex;
@@ -100,20 +100,27 @@
       transform: translateY(-4px);
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
-    .featured-images {
-      width: 50%;
+    
+    /* REVISED CONTAINER FOR VERTICAL/NARROW IMAGES */
+    .featured-image-container {
+      width: 45%; /* Content gets more room */
+      background: #f1f5f9;
       display: flex;
-      background: #eee;
+      flex-direction: row; /* Sideways stack */
+      overflow: hidden; /* Important! Cut off the bottoms gracefully */
       border-right: 1px solid var(--border);
     }
-    .featured-images img {
+    
+    .vertical-asset {
       width: 50%;
-      height: 400px;
-      object-fit: cover;
-      object-position: top;
+      height: 400px; /* Fixed height forces the crop */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top; /* Focus on the hero/header section */
     }
+
     .featured-content {
-      width: 50%;
+      width: 55%;
       padding: 2rem;
       display: flex;
       flex-direction: column;
@@ -231,8 +238,9 @@
     /* RESPONSIVE */
     @media (max-width: 800px) {
       .featured-card { flex-direction: column; }
-      .featured-images, .featured-content { width: 100%; }
-      .featured-images img { height: 250px; }
+      .featured-image-container, .featured-content { width: 100%; }
+      .featured-image-container { border-right: none; border-bottom: 1px solid var(--border); }
+      .vertical-asset { height: 300px; }
     }
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.2rem; }
@@ -260,21 +268,21 @@
     <div class="projects-grid">
 
       <article class="featured-card">
-        <div class="featured-images">
-          <img src="./Portfolio%20-%20Platinum.png" alt="Platinum Environmental Group Desktop View">
-          <img src="./Portfolio%20-%20Platinum2.png" alt="Platinum Environmental Group Detailed View" style="border-left: 1px solid var(--border);">
+        <div class="featured-image-container">
+          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum.png'); border-right: 1px solid var(--border);"></div>
+          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum2.png');"></div>
         </div>
         <div class="featured-content">
-          <div class="badge" style="width: fit-content; margin-bottom: 1rem;">Featured: Client Project</div>
+          <div class="badge" style="width: fit-content; margin-bottom: 1rem;">Featured: Production Client Site</div>
           <h2>Platinum Environmental Group</h2>
           <p>
-            A high-performance corporate platform engineered for a leading industrial environmental firm. Developed to showcase large-scale remediation services, safety protocols, and supply chain logistics. Features a clean, professional aesthetic optimized for B2B client conversion and mobile responsiveness.
+            A high-performance corporate platform engineered for a leading industrial environmental firm. Developed to translate high-stakes field services into a professional digital presence, featuring semantic architecture, mobile-first design, and detailed commercial protocols. Demonstrates real-world client delivery and complex B2B narrative mapping.
           </p>
           <div class="tech-stack">
             <span class="badge">HTML5/CSS3</span>
             <span class="badge">JavaScript</span>
-            <span class="badge">Responsive Design</span>
-            <span class="badge">B2B Strategy</span>
+            <span class="badge">Responsive UI</span>
+            <span class="badge">Commercial B2B</span>
           </div>
           <div class="card-actions">
             <a href="https://platinumenvgroup.com/" target="_blank" class="btn btn-primary">View Live Site</a>
@@ -288,7 +296,7 @@
         <div class="card-content">
           <h2>Recipe App (Django)</h2>
           <p>
-            A full-stack web application for managing recipes. Features secure authentication, PostgreSQL integration, and data analytics using Pandas to visualize difficulty trends.
+            A full-stack web application for managing and analyzing recipes. Features secure authentication, PostgreSQL integration, and Pandas for visualizing trends.
           </p>
           <div class="tech-stack">
             <span class="badge">Python</span>
@@ -297,7 +305,7 @@
             <span class="badge">Pandas</span>
           </div>
           <div class="card-actions">
-            <a href="https://yusuf-recipe-app-e9b7920225a4.herokuapp.com/" target="_blank" class="btn btn-primary">View App</a>
+            <a href="https://yusuf-recipe-app-e9b7920225a4.herokuapp.com/" target="_blank" class="btn btn-primary">View Live App</a>
             <a href="https://github.com/YusufBee1/recipe-app" target="_blank" class="btn btn-outline">Code</a>
           </div>
         </div>
@@ -308,12 +316,12 @@
         <div class="card-content">
           <h2>Chat App (Mobile)</h2>
           <p>
-            Real-time native mobile messaging built with React Native and Firestore. Supports image sharing, geolocation, and offline caching.
+            Native mobile messaging interface built with React Native and Firestore. Features real-time messaging, image/geo-sharing, and robust offline data caching.
           </p>
           <div class="tech-stack">
             <span class="badge">React Native</span>
-            <span class="badge">Firestore</span>
             <span class="badge">Expo</span>
+            <span class="badge">Firestore</span>
           </div>
           <div class="card-actions">
             <a href="https://github.com/YusufBee1/chat-app" target="_blank" class="btn btn-outline">View Code</a>
@@ -326,7 +334,7 @@
         <div class="card-content">
           <h2>myFlix (Angular)</h2>
           <p>
-            Single Page Application built with Angular and Material UI, interfacing with a custom REST API for movie data management.
+            Single Page Application (SPA) built with Angular and Material UI, interfacing with a REST API movie database. Documented with TypeDoc.
           </p>
           <div class="tech-stack">
             <span class="badge">Angular</span>
