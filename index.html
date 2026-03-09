@@ -84,7 +84,43 @@
       padding: 4rem 0;
     }
 
-    /* PROJECT CARD */
+    /* FEATURED CARD (PLATINUM) */
+    .featured-card {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: row;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    .featured-images {
+      width: 50%;
+      display: flex;
+      background: #eee;
+      border-right: 1px solid var(--border);
+    }
+    .featured-images img {
+      width: 50%;
+      height: 400px;
+      object-fit: cover;
+      object-position: top;
+    }
+    .featured-content {
+      width: 50%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* STANDARD PROJECT CARD */
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -116,14 +152,14 @@
       flex-direction: column;
     }
 
-    .card h2 {
+    .card h2, .featured-content h2 {
       margin-top: 0;
       margin-bottom: 0.5rem;
       font-size: 1.5rem;
       color: #0f172a;
     }
 
-    .card p {
+    .card p, .featured-content p {
       color: var(--text-muted);
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
@@ -134,7 +170,6 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
-      margin-top: auto;
     }
 
     .badge {
@@ -194,6 +229,11 @@
     }
 
     /* RESPONSIVE */
+    @media (max-width: 800px) {
+      .featured-card { flex-direction: column; }
+      .featured-images, .featured-content { width: 100%; }
+      .featured-images img { height: 250px; }
+    }
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.2rem; }
       .projects-grid { grid-template-columns: 1fr; }
@@ -219,18 +259,22 @@
   <div class="container">
     <div class="projects-grid">
 
-      <article class="card">
-        <img src="https://via.placeholder.com/600x400/1e293b/ffffff?text=Platinum+Env+Group" alt="Platinum Environmental Group" class="card-image">
-        <div class="card-content">
+      <article class="featured-card">
+        <div class="featured-images">
+          <img src="./Portfolio%20-%20Platinum.png" alt="Platinum Environmental Group Desktop View">
+          <img src="./Portfolio%20-%20Platinum2.png" alt="Platinum Environmental Group Detailed View" style="border-left: 1px solid var(--border);">
+        </div>
+        <div class="featured-content">
+          <div class="badge" style="width: fit-content; margin-bottom: 1rem;">Featured: Client Project</div>
           <h2>Platinum Environmental Group</h2>
           <p>
-            A production-ready, responsive corporate website engineered for a commercial environmental remediation firm. Built to translate high-stakes field services into a professional digital presence, featuring semantic architecture, mobile-first design, and fast load times. Demonstrates real-world client delivery and business-to-technical translation.
+            A high-performance corporate platform engineered for a leading industrial environmental firm. Developed to showcase large-scale remediation services, safety protocols, and supply chain logistics. Features a clean, professional aesthetic optimized for B2B client conversion and mobile responsiveness.
           </p>
           <div class="tech-stack">
             <span class="badge">HTML5/CSS3</span>
             <span class="badge">JavaScript</span>
-            <span class="badge">Responsive UI</span>
-            <span class="badge">Client Delivery</span>
+            <span class="badge">Responsive Design</span>
+            <span class="badge">B2B Strategy</span>
           </div>
           <div class="card-actions">
             <a href="https://platinumenvgroup.com/" target="_blank" class="btn btn-primary">View Live Site</a>
@@ -244,18 +288,17 @@
         <div class="card-content">
           <h2>Recipe App (Django)</h2>
           <p>
-            A full-stack web application for managing and analyzing recipes. Built with Python & Django, it features secure authentication, PostgreSQL database integration, and data visualization using Pandas & Matplotlib to calculate recipe difficulty and trends.
+            A full-stack web application for managing recipes. Features secure authentication, PostgreSQL integration, and data analytics using Pandas to visualize difficulty trends.
           </p>
           <div class="tech-stack">
             <span class="badge">Python</span>
             <span class="badge">Django</span>
             <span class="badge">PostgreSQL</span>
             <span class="badge">Pandas</span>
-            <span class="badge">Heroku</span>
           </div>
           <div class="card-actions">
-            <a href="https://yusuf-recipe-app-e9b7920225a4.herokuapp.com/" target="_blank" class="btn btn-primary">View Live App</a>
-            <a href="https://github.com/YusufBee1/recipe-app" target="_blank" class="btn btn-outline">View Code</a>
+            <a href="https://yusuf-recipe-app-e9b7920225a4.herokuapp.com/" target="_blank" class="btn btn-primary">View App</a>
+            <a href="https://github.com/YusufBee1/recipe-app" target="_blank" class="btn btn-outline">Code</a>
           </div>
         </div>
       </article>
@@ -265,13 +308,12 @@
         <div class="card-content">
           <h2>Chat App (Mobile)</h2>
           <p>
-            A native mobile chat interface built with React Native. Features include real-time messaging via Firestore, image sharing from camera/gallery, geolocation sharing, and robust offline data caching.
+            Real-time native mobile messaging built with React Native and Firestore. Supports image sharing, geolocation, and offline caching.
           </p>
           <div class="tech-stack">
             <span class="badge">React Native</span>
-            <span class="badge">Expo</span>
             <span class="badge">Firestore</span>
-            <span class="badge">Android/iOS</span>
+            <span class="badge">Expo</span>
           </div>
           <div class="card-actions">
             <a href="https://github.com/YusufBee1/chat-app" target="_blank" class="btn btn-outline">View Code</a>
@@ -284,12 +326,11 @@
         <div class="card-content">
           <h2>myFlix (Angular)</h2>
           <p>
-            A responsive Single Page Application (SPA) interfacing with a REST API movie database. It utilizes Angular Material for a polished UI, allowing users to manage profiles and favorite movies. Fully documented with TypeDoc.
+            Single Page Application built with Angular and Material UI, interfacing with a custom REST API for movie data management.
           </p>
           <div class="tech-stack">
             <span class="badge">Angular</span>
             <span class="badge">TypeScript</span>
-            <span class="badge">Material UI</span>
             <span class="badge">REST API</span>
           </div>
           <div class="card-actions">
