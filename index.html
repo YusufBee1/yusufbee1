@@ -20,8 +20,7 @@
       --text-muted: #64748b;
       --border: #e2e8f0;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      --featured-height: 400px;
+      --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
     /* RESET & BASE */
@@ -53,7 +52,6 @@
       margin: 0 0 0.5rem 0;
       letter-spacing: -0.07rem;
       color: var(--secondary);
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
     }
     .hero p.tagline {
       font-size: 1.35rem;
@@ -88,7 +86,7 @@
       padding: 5rem 0;
     }
 
-    /* FEATURED CARD (THEWOW UI PIVOT) */
+    /* FEATURED CARD (WOW UI - CROSSFADE FIX) */
     .featured-card {
       grid-column: 1 / -1;
       display: flex;
@@ -98,39 +96,60 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+      min-height: 480px; /* Gives the images room to breathe */
     }
     .featured-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--hover-shadow);
-      border-color: #dbeafe;
     }
     
-    /* COLLAGE CONTAINER FOR VERTICAL/NARROW IMAGES */
-    .featured-image-container {
-      width: 48%; /* Content gets slightly more room */
-      background: #f1f5f9;
-      display: flex;
-      flex-direction: row; /* Stack sideways like vertical columns */
-      overflow: hidden; /* Important! Cut off the bottoms gracefully */
-      border-right: 1px solid var(--border);
-    }
-    
-    .vertical-asset {
+    /* THE CROSSFADE CONTAINER */
+    .featured-image-wrapper {
       width: 50%;
-      height: var(--featured-height); /* Fixed height forces the crop */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center top; /* Focus on the hero/header section you built */
-      transition: background-position 0.2s ease-out;
+      position: relative; /* Anchor for the absolute images */
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--secondary);
     }
-    .vertical-asset:hover {
-        background-position: center bottom; /* subtle scroll on hover for "WOW" UI */
+
+    .crossfade-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center top;
+      transition: opacity 0.5s ease-in-out, transform 0.7s ease-out;
+    }
+
+    /* Top Image (Hero Shot) */
+    .img-primary {
+      background-image: url('./Portfolio%20-%20Platinum.png');
+      z-index: 2;
+      opacity: 1;
+    }
+
+    /* Bottom Image (Detail Shot) */
+    .img-secondary {
+      background-image: url('./Portfolio%20-%20Platinum2.png');
+      z-index: 1;
+      opacity: 1; 
+      transform: scale(1.05); /* Starts slightly zoomed in */
+    }
+
+    /* Hover Interactions */
+    .featured-image-wrapper:hover .img-primary {
+      opacity: 0; /* Fade out the top image */
+    }
+    .featured-image-wrapper:hover .img-secondary {
+      transform: scale(1); /* Smoothly zoom out the bottom image as it's revealed */
     }
 
     .featured-content {
-      width: 52%;
-      padding: 3rem;
+      width: 50%;
+      padding: 3.5rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -143,14 +162,13 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
       display: flex;
       flex-direction: column;
     }
     .card:hover {
       transform: translateY(-5px);
       box-shadow: var(--hover-shadow);
-      border-color: #dbeafe;
     }
 
     .card-image {
@@ -205,7 +223,7 @@
       margin-top: auto;
     }
 
-    /* BUTTONS & WOW UI INTERACTION */
+    /* BUTTONS */
     .btn {
       display: inline-block;
       text-decoration: none;
@@ -220,11 +238,9 @@
     .btn-primary {
       background: var(--primary);
       color: white;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     .btn-primary:hover {
       background: var(--primary-hover);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
     .btn-outline {
       background: white;
@@ -233,7 +249,6 @@
     }
     .btn-outline:hover {
       background: #f1f5f9;
-      border-color: #cbd5e1;
     }
 
     /* ABOUT SECTION */
@@ -250,16 +265,12 @@
     .about-section h2 { font-size: 2.25rem; color: var(--secondary); margin-bottom: 1rem; }
     .about-section p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.75; }
 
-    /* FOOTER */
-    footer { padding: 3rem 0; text-align: center; color: var(--text-muted); border-top: 1px solid var(--border); font-size: 0.9rem; }
-
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero h1 { font-size: 2.75rem; }
-      .featured-card { flex-direction: column; }
-      .featured-image-container, .featured-content { width: 100%; }
-      .featured-image-container { border-right: none; border-bottom: 1px solid var(--border); }
-      .vertical-asset { height: 320px; }
+      .featured-card { flex-direction: column; min-height: auto; }
+      .featured-image-wrapper, .featured-content { width: 100%; }
+      .featured-image-wrapper { height: 350px; border-right: none; border-bottom: 1px solid var(--border); }
       .featured-content { padding: 2.5rem; }
     }
     @media (max-width: 600px) {
@@ -288,9 +299,9 @@
     <div class="projects-grid">
 
       <article class="featured-card">
-        <div class="featured-image-container">
-          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum.png'); border-right: 1px solid var(--border);" title="Desktop Overview Hero Shot"></div>
-          <div class="vertical-asset" style="background-image: url('./Portfolio%20-%20Platinum2.png');" title="Production Detailed Views"></div>
+        <div class="featured-image-wrapper">
+          <div class="crossfade-img img-secondary"></div>
+          <div class="crossfade-img img-primary"></div>
         </div>
         <div class="featured-content">
           <div class="badge" style="width: fit-content; margin-bottom: 1.25rem; background: #eff6ff; color: var(--primary);">Featured: Production Client Delivery</div>
@@ -382,12 +393,6 @@
       </p>
     </div>
   </section>
-
-  <footer>
-    <div class="container">
-      &copy; 2026 Yusuf Bee. Precision & Purpose • nag’s head, nc
-    </div>
-  </footer>
 
 </body>
 </html>
